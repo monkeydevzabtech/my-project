@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Responsive Table Example</title>
+    <style>
+      .table-container {
+        width: 100%; /* ความกว้างเต็มที่ของ container */
+        overflow: hidden; /* ซ่อน overflow */
+      }
+
+      .table-wrapper {
+        width: 100%; /* ความกว้าง 100% ของ container */
+        display: inline-block; /* ขยายตามเนื้อหา */
+        transform-origin: top left; /* กำหนดจุดย่อให้เริ่มที่มุมบนซ้าย */
+      }
+
+      table {
+        width: 100%; /* ให้ตารางขยายตามความกว้างของ wrapper */
+        border-collapse: collapse; /* ทำให้เส้นขอบไม่ซ้อนกัน */
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd; /* เพิ่มเส้นขอบให้เห็นชัดเจน */
+        padding: 8px; /* เพิ่ม padding ให้กับเนื้อหาในตาราง */
+        text-align: left; /* จัดเนื้อหาให้อยู่ชิดซ้าย */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ส่วนอื่น ๆ ของเว็บไซต์จะยังคงเหมือนเดิม -->
+    <div class="content">
+      <h1>My Website</h1>
+      <p>Some content here...</p>
+      <!-- wrapper ของ table -->
+      <div class="table-container">
+        <div class="table-wrapper" id="table-wrapper">
+          <table>
+            <tr>
+              <th>Header 1</th>
+              <th>Header 2</th>
+              <th>Header 3</th>
+              <th>Header 4</th>
+              <th>Header 5</th>
+              <th>Header 6</th>
+              <th>Header 7</th>
+              <th>Header 8</th>
+              <th>Header 9</th>
+              <th>Header 10</th>
+            </tr>
+            <tr>
+              <td>Data 1</td>
+              <td>Data 2</td>
+              <td>Data 3</td>
+              <td>Data 4</td>
+              <td>Data 5</td>
+              <td>Data 6</td>
+              <td>Data 7</td>
+              <td>Data 8</td>
+              <td>Data 9</td>
+              <td>Data 10</td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </table>
+        </div>
+      </div>
+
+      <p>More content here...</p>
+    </div>
+
+    <script>
+      function calculateScaleFactor(viewportWidth) {
+        // คำนวณค่า scale factor ตามสูตรที่กำหนด
+        return 0.00145 * viewportWidth - 0.015;
+      }
+
+      function applyScale() {
+        const viewportWidth = window.innerWidth; // ดึงค่า width ของหน้าจอ
+        const scaleFactor = calculateScaleFactor(viewportWidth); // คำนวณค่า scale-factor
+        document.getElementById(
+          "table-wrapper"
+        ).style.transform = `scale(${scaleFactor})`; // ปรับขนาดตาราง
+      }
+
+      // เรียกใช้ฟังก์ชัน applyScale เมื่อโหลดหน้าเว็บ
+      applyScale();
+
+      // เรียกใช้ฟังก์ชัน applyScale เมื่อขนาดหน้าต่างถูกย่อ/ขยาย
+      window.addEventListener("resize", applyScale);
+    </script>
+  </body>
+</html>
